@@ -30,8 +30,7 @@ namespace ProductManagementMVC.Controllers
             var user = new User
             {
                 Name = model.Name,
-                Email = model.Email,
-                Password = model.Password
+                Email = model.Email
             };
 
             _context.Users.Add(user);
@@ -51,8 +50,7 @@ namespace ProductManagementMVC.Controllers
             var model = new UserDTO
             {
                 Name = user.Name,
-                Email = user.Email,
-                Password = user.Password
+                Email = user.Email
             };
 
             return View(model);
@@ -71,7 +69,6 @@ namespace ProductManagementMVC.Controllers
             {
                 user.Name = model.Name;
                 user.Email = model.Email;
-                user.Password = model.Password;
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction("UserHome");

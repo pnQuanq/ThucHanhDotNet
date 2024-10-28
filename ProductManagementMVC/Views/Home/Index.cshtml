@@ -1,25 +1,61 @@
 ﻿@using ProductManagementMVC.DTOs
 @model ProductDTO
 
-@{
-    ViewData["Title"] = "Home";
-}
+<!-- Hero Section -->
+<header class="hero bg-primary text-white text-center">
+    <div class="container">
+        <h1 class="display-4">Welcome to Fashion Hub</h1>
+        <p class="lead">Discover the latest trends and styles.</p>
+        <a href="#" class="btn btn-light btn-lg">Shop Now</a>
+    </div>
+</header>
 
-<h2>Products</h2>
-
-<div class="row">
-    @foreach (var product in Model.Products)
-    {
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="@Url.Content("~/images/products/" + product.Picture)" class="card-img-top" alt="@product.ProductName" />
-                <div class="card-body">
-                    <h5 class="card-title">@product.ProductName</h5>
-                    <p class="card-text">Price: @product.UnitPrice.ToString("C")</p>
-                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+<!-- Featured Products Section -->
+<section class="container my-5">
+    <h2 class="text-center">Featured Products</h2>
+    <div class="row">
+        @foreach(var product in Model.Products)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card position-relative">
+                    <!-- Add position-relative to card -->
+                    <img src="@Url.Content("~/images/products/" + product.Picture)" class="card-img-top product-image" alt="@product.ProductName" />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductName</h5>
+                        <p class="card-text">@product.UnitPrice</p>
+                        <a href="#" class="btn btn-primary">View Product</a>
+                    </div>
+                    <button class="btn btn-light position-absolute heart-icon" onclick="toggleFavorite(this)">
+                        <i class="fas fa-heart"></i> <!-- Use fa-lg for larger size -->
+                    </button>
                 </div>
             </div>
-        </div>
+        }
+    </div>
+</section>
+<style>
+    .product-image {
+        width: 100%; /* Make the image fill the width of the card */
+        height: 250px; /* Fixed height */
+        object-fit: cover; /* Cover the area while maintaining aspect ratio */
     }
-</div>
+
+    .heart-icon {
+        right: 10px; /* Distance from the right edge */
+        bottom: 16px; /* Distance from the bottom edge */
+        border: none; /* Remove button border */
+        background: transparent; /* Make background transparent */
+        cursor: pointer; /* Change cursor to pointer */
+        font-size: 22px; /* Increase font size for the heart icon */
+        display: flex; /* Use flex to center vertically */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+    }
+</style>
+<script>
+    function toggleFavorite(button) {
+        const icon = button.querySelector('i');
+        icon.classList.toggle('text-danger'); // Change color to red when favorited
+        // Here you can add logic to save the favorite status
+    }
+</script>
