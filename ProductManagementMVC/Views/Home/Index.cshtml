@@ -1,0 +1,25 @@
+﻿@using ProductManagementMVC.DTOs
+@model ProductDTO
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>Products</h2>
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@Url.Content("~/images/products/" + product.Picture)" class="card-img-top" alt="@product.ProductName" />
+                <div class="card-body">
+                    <h5 class="card-title">@product.ProductName</h5>
+                    <p class="card-text">Price: @product.UnitPrice.ToString("C")</p>
+                    <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

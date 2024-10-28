@@ -1,0 +1,34 @@
+﻿@using ProductManagementMVC.DTOs
+@model CreateProductDTO
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="@Model.ProductCode"></label>
+        <input asp-for="@Model.ProductCode" class="form-control" />
+        <span asp-validation-for="@Model.ProductCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.ProductName"></label>
+        <input asp-for="@Model.ProductName" class="form-control" />
+        <span asp-validation-for="@Model.ProductName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.UnitPrice"></label>
+        <input asp-for="@Model.UnitPrice" class="form-control" />
+        <span asp-validation-for="@Model.UnitPrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Quantity"></label>
+        <input asp-for="@Model.Quantity" class="form-control" />
+        <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.PictureFile"></label>
+        <input asp-for="@Model.PictureFile" type="file" class="form-control" />
+        <span asp-validation-for="@Model.PictureFile" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
