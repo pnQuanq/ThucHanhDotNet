@@ -1,0 +1,15 @@
+﻿@model ProductManagementMVC.Models.Product
+
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+<h2>@Model.ProductName</h2>
+
+<div>
+    <img src="~/images/products/@Model.Picture" alt="@Model.ProductName" style="width:200px;height:200px;" />
+    <p><strong>Product Code:</strong> @Model.ProductCode</p>
+    <p><strong>Unit Price:</strong> @Model.UnitPrice.ToString("C")</p>
+    <p><strong>Quantity:</strong> @Model.Quantity</p>
+    <a asp-action="ProductHome" class="btn btn-primary">Back to Products</a>
+</div>

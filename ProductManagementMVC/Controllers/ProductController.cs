@@ -157,5 +157,18 @@ namespace ProductManagementMVC.Controllers
 
             return RedirectToAction("ProductHome");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
     }
 }
